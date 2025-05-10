@@ -1,38 +1,113 @@
-.App {
-  text-align: center;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: gray;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100vh;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.weather-card {
+  width: 90vw;
+  max-width: 400px;
+  height: 90vh;
+  max-height: 400px;
+  padding: 1.2em 2em;
+
+  border-radius: 0.5em;
+  background-color: white;
+  box-shadow: 16px 13px 31px black;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.weather-card-imgBox {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-bottom: 2em;
+}
+
+.weather-card-img {
+  width: 10em;
+  height: 10em;
+}
+.weather-card-degre {
+  font-size: 1.4em;
+}
+
+.weather-card-time {
+  font-size: 1.5em;
+}
+
+/* weather-form */
+
+.weather-form {
+  margin-bottom: 1.2em;
+  display: flex;
+  height: 4em;
+  outline: gray;
+  gap: 0.5em;
+}
+
+.weather-form-input {
+  width: 100%;
+  height: 100%;
+  padding: 1.2em 2em;
+  border-radius: 0.5em;
+  font-size: 1.2em;
+  transition: 0.3s ease-in-out;
+  box-shadow: 16px 13px 31px black;
+}
+
+.weather-form-btn {
+  width: 50%;
+  height: 100%;
+  padding: 1.2em 0;
+  border-radius: 0.5em;
+  font-size: 1em;
+  background-color: black;
+  border: none;
   color: white;
+  cursor: pointer;
+  box-shadow: 16px 13px 31px black;
+  transition: 0.3s ease-in-out;
 }
 
-.App-link {
-  color: #61dafb;
+.weather-form-btn:hover {
+  background-color: gray;
+  border: 1px solid black;
+  color: black;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.weather-form-errorCross {
+  background: transparent;
+  border: none;
+  scale: 1.5;
+  cursor: pointer;
+}
+
+/* danger */
+
+.danger {
+  width: auto;
+  height: 5em;
+  background-color: pink;
+  border: 1px solid red;
+  border-radius: 1em;
+  text-align: center;
+  padding-inline: 1.2em;
+  font-size: 1.1em;
+  display: flex;
+  gap: 1.3em;
+  align-items: center;
 }

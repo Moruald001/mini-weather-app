@@ -1,24 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import "./App.css";
+import { Weather } from "./components/weather";
+import { WeatherForm } from "./components/weatherForm";
+import { WeatherContext, CityContext } from "./context/weatherContext";
 
 function App() {
+  const [weather, setWeather] = useState({});
+  const [city, setCity] = useState("");
+
+  const wcontextProvide = {
+    weather: weather,
+    setWeather: setWeather,
+  };
+  const cityContextProvide = {
+    city: city,
+    setCity: setCity,
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <WeatherContext.Provider value={wcontextProvide}>
+      <CityContext.Provider value={cityContextProvide}>
+        <div className="Parent">
+          <WeatherForm />
+          <Weather city={city} />
+        </div>
+      </CityContext.Provider>
+    </WeatherContext.Provider>
   );
 }
 
