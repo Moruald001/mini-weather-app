@@ -30,7 +30,7 @@ jobs:
             --exclude '.github/' \
             --exclude 'README.md' \
             --exclude '.gitignore/' \
-            /build/ ${{ secrets.SERVER_USER}}@${{ secrets.SERVER_HOST  }}:${{ secrets.REMOTE_DIR }}
+            ../build/ ${{ secrets.SERVER_USER}}@${{ secrets.SERVER_HOST  }}:${{ secrets.REMOTE_DIR }}
 
       - name: Statut du déploiement
         run: echo "🚀 Déploiement terminé avec succès !"
