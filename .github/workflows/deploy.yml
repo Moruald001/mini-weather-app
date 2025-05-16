@@ -20,7 +20,7 @@ jobs:
       - name: Ajout automatique de l'empreinte du serveur
         run: |
           mkdir -p ~/.ssh
-          ssh-keyscan -H ${{secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          ssh-keyscan -H ${{ secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
 
       - name: Déploiement vers le serveur
@@ -30,7 +30,7 @@ jobs:
             --exclude '.github/' \
             --exclude 'README.md' \
             --exclude '.gitignore/' \
-            ./build/ ${{ secrets.SERVER_USER}}@${{ secrets.SERVER_HOST  }}:${{ secrets.REMOTE_DIR }}
+            /build/ ${{ secrets.SERVER_USER}}@${{ secrets.SERVER_HOST  }}:${{ secrets.REMOTE_DIR }}
 
       - name: Statut du déploiement
         run: echo "🚀 Déploiement terminé avec succès !"
