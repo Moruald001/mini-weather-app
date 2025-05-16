@@ -1,0 +1,36 @@
+name: Déploiement du Site Web
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupération du code source
+        uses: actions/checkout@v4
+
+      - name: Configuration SSH
+        uses: webfactory/ssh-agent@v0.9.1
+        with:
+          ssh-private-key: ${{ secrets.SERVER_KEY }}
+
+      - name: Ajout automatique de l'empreinte du serveur
+        run: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{secrets.SERVER_HOST }} >> ~/.ssh/known_hosts
+          chmod 644 ~/.ssh/known_hosts
+
+      - name: Déploiement vers le serveur
+        run: |
+          rsync -avz --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'README.md' \
+            --exclude '.gitignore/' \
+            ./build/ ${{ secrets.SERVER_USER}}@${{ secrets.SERVER_HOST  }}:${{ secrets.REMOTE_DIR }}
+
+      - name: Statut du déploiement
+        run: echo "🚀 Déploiement terminé avec succès !"
